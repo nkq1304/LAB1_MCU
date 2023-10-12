@@ -197,12 +197,75 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int counter = 0;
-  while (1){
-      if(counter >= 10) counter = 0;
-      display7SEG(counter++);
-      HAL_Delay(1000);
+  enum TrafficLightState {
+      RED1_GREEN2,
+	  RED1_YELLOW2,
+	  GREEN1_RED2,
+	  YELLOW1_RED2,
+    };
+  // Initialize the current state of the traffic light
+  int counter = 3;
+  int light = 5; //red1 turns on 5s
+  enum TrafficLightState currentState = RED1_GREEN2;
+  while (1)
+  {
+	  resetAllLights();
+	  display7SEG(light);
+	  switch (currentState) {
+	    case RED1_GREEN2:
+	    	//TODO
+	    	HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
+	    	HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, RESET);
+	    	counter--;
+	    	light--;
+	    	//CHANGE STATE
+	    	if(counter <= 0)
+	    	{
+	    		currentState = RED1_YELLOW2;
+	    		counter = 2; //yellow2 turn on 2s
+	    	}
+	    	break;
+	    case RED1_YELLOW2:
+	    	HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
+	    	HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, RESET);
+	    	counter--;
+	    	light--;
+	    	if(counter <= 0)
+	    	{
+	    		currentState = GREEN1_RED2;
+		    	counter = 3; //green1 turn on 3s in next state
+		    	light = 3;
+	    	}
+	    	break;
+	    case GREEN1_RED2:
+	    	HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, RESET);
+	    	HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
+	    	counter--;
+	    	light--;
+	    	if(counter <= 0)
+	    	{
+	    		currentState = YELLOW1_RED2;
+		    	counter = 2;
+		    	light = 2;
+	    	}
+	    	break;
+	    case YELLOW1_RED2:
+	    	HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, RESET);
+	    	HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
+	    	counter--;
+	    	light--;
+	    	if(counter <= 0)
+	    	{
+	    		currentState = RED1_GREEN2;
+		    	counter = 3;
+		    	light = 5;
+	    	}
+	    	break;
+	  }
+	  HAL_Delay(1000);
+    /* USER CODE END WHILE */
 
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }

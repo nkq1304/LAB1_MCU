@@ -218,16 +218,27 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int num =0;
+  int hour=2;
+  int min=59;
+  int sec=50;
   while (1)
   {
-    /* USER CODE END WHILE */
-	  turnOnLedSeq(num);
-	  num++;
-	  if(num>=12){
-		  num = 0;
+	  clearAllClock();
+	  if (sec>=60){
+		  sec=0;
+		  min++;
 	  }
+	  if(min>=60){
+		  min=0;
+		  hour++;
+	  }
+	  setNumberOnClock(hour);
+	  setNumberOnClock(min/5);
+	  setNumberOnClock(sec/5);
+	  sec++;
 	  HAL_Delay(1000);
+    /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

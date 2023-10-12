@@ -4,6 +4,7 @@ Here is a tree diagram depicting the organizational structure of the project:
 
 .
 └── master (original source code in STM32)/
+
     ├── EX1 (traffic light)/
 
     │   └── EX2/

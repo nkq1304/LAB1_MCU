@@ -1,2 +1,2 @@
 # LAB1_MCU
-The 'Branch EX7' contains the STM32 source code and a Proteus folder in exercise 7.
+The 'Branch EX8' contains the STM32 source code and a Proteus folder in exercise 8.

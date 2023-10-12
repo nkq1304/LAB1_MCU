@@ -2,24 +2,27 @@
 ## Project structure
 Here is a tree diagram depicting the organizational structure of the project:
 
-master (original source code in STM32)/
+.
 
-├── EX1 (traffic light)/
+└── master (original source code in STM32)/
 
-│   └── EX2/
+    ├── EX1 (traffic light)/
 
-│       └── EX3/
+    │   └── EX2/
 
-│           └── EX4/
+    │       └── EX3/
 
-│               └── EX5
+    │           └── EX4/
 
-└── EX6 (analog clock)/
+    │               └── EX5
 
-    └── EX7/
+    └── EX6 (analog clock)/
 
-        └── EX8/
+        └── EX7/
 
-            └── EX9/
+            └── EX8/
 
-                └── EX10
+                └── EX9/
+
+                    └── EX10
+
